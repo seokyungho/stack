@@ -1,0 +1,81 @@
+
+#include <stdio.h>
+
+#define size 10 // define stack size
+
+int stack[size]; // stack array
+int top = -1;
+void push(int data);
+int pop();
+int stack_full();
+int stack_empty();
+
+void main()
+{
+    int choice, num;
+
+    printf("<choose> \n 1: push\n 2: pop\n 3: end\n");
+    scanf("%d", &choice);
+
+    while (choice != 3) // choice loop push, pop or end
+    {
+        switch (choice) {
+        case 1: // push
+            if (stack_full() == 1)// check stack_full
+            {
+                printf("Stack is full\n");
+                break;
+            }
+            else // push the data
+            {
+                printf("input the num : \n");
+                scanf("%d", &num);
+                push(num);
+                break;
+            }
+        case 2: // pop
+            if (stack_empty() == 1) // check stack_empty
+            {
+                printf("Stack is empty\n");
+                break;
+            }
+            else //pop the data
+            {
+                printf("%d is deleted.\n", pop());
+                break;
+            }
+        }
+        printf("<choose> \n 1: push\n 2: pop\n 3: end\n");
+        scanf("%d", &choice);
+    }
+
+}
+void push(int data) //push function
+{
+    top++;
+    stack[top] = data;
+}
+int pop() // pop function
+{
+
+    return stack[top--];
+}
+int stack_full() // check stack full function
+{
+    if (top >= size - 1)
+    {
+        return 1;
+    }
+    else
+        return 0;
+}
+int stack_empty() // check stacj empty function
+{
+    if (top <= -1)
+    {
+        return 1;
+    }
+    else
+        return 0;
+}
+
